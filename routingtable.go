@@ -432,7 +432,7 @@ func (rt *routingTable) GetNeighbors(id *bitmap, size int) []*node {
 	return result
 }
 
-// GetNeighborIds return the size-length compact node info closest to id.
+// GetNeighborCompactInfos: return the size-length compact node info closest to id.
 func (rt *routingTable) GetNeighborCompactInfos(id *bitmap, size int) []string {
 	neighbors := rt.GetNeighbors(id, size)
 	infos := make([]string, len(neighbors))
@@ -491,7 +491,7 @@ func (rt *routingTable) Remove(id *bitmap) {
 	}
 }
 
-// Remove deletes the node whose address is `ip:port`.
+// RemoveByAddr removes deletes the node whose address is `ip:port`.
 func (rt *routingTable) RemoveByAddr(address string) {
 	v, ok := rt.cachedNodes.Get(address)
 	if ok {
